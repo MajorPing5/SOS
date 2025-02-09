@@ -1,9 +1,11 @@
+package application;
+import GUI.MainMenu;
 import javafx.application.Application;
 
 public class App {
 
 	public static void main(String[] args) {
-		Application.launch(MainMenuGUI.class, args);
+		Application.launch(MainMenu.class, args);
 
 	}
 

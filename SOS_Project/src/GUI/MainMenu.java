@@ -1,10 +1,11 @@
+package GUI;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class MainMenuGUI extends Application{
+public class MainMenu extends Application{
 	public void start(Stage stage) {
 		Circle circ = new Circle(40, 40, 30);
 		Group root = new Group(circ);
