@@ -7,6 +7,13 @@ import javafx.stage.Stage;
 
 public class MainMenu extends Application{
 	public void start(Stage stage) {
+		/**
+		 * Button button =
+		 * button.setOnAction(event -> {
+		 * 	// button pressed
+		 * });
+		 */
+		
 		Circle circ = new Circle(40, 40, 30);
 		Group root = new Group(circ);
 		Scene scene = new Scene(root, 400, 300);
