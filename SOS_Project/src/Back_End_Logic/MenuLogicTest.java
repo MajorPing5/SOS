@@ -6,25 +6,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-class MainMenuTest {
+class MenuLogicTest {
 	@Test
 	void gameBoardInvalidTest() {
 		assertAll(
 				// Invalid Board Size when < 2
 				() -> {
-					MainMenu testBoard = new MainMenu();
+					MenuLogic testBoard = new MenuLogic();
 					testBoard.validateOptionB("0");
 					assertEquals(2, testBoard.getOptionB());
 				},
 				// Invalid Board Size when = 2
 				() -> {
-					MainMenu testBoard = new MainMenu();
+					MenuLogic testBoard = new MenuLogic();
 					testBoard.validateOptionB("2");
 					assertEquals(2, testBoard.getOptionB());
 				},
 				// Invalid Board Size when not numerical
 				() -> {
-					MainMenu testBoard = new MainMenu();
+					MenuLogic testBoard = new MenuLogic();
 					testBoard.validateOptionB("abc");
 					assertEquals(2, testBoard.getOptionB());
 				}
@@ -34,7 +34,7 @@ class MainMenuTest {
 	@Test
 	void gameBoardValidTest() {
 		// Valid board Size when > 2
-		MainMenu testBoard = new MainMenu();
+		MenuLogic testBoard = new MenuLogic();
 		testBoard.validateOptionB("3");
 		
 		assertEquals(3, testBoard.getOptionB());

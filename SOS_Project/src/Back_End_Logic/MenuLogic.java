@@ -1,8 +1,12 @@
 package Back_End_Logic;
 import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.*;
+import javafx.collections.*;
 
-public class MainMenu {
+public class MenuLogic {
+	public static final ObservableList<String> GAME_MODES
+		= FXCollections.observableArrayList("Simple Game", "General Game");
+	
 	/**
 	 *  Descriptive enums for Radio Buttons
 	 */
@@ -26,14 +30,14 @@ public class MainMenu {
 	/**
 	 *  Validation of Board Size
 	 * @param	String input
-	 * @return	Either 2 or parsed value
+	 * @return	Either 3 or parsed value
 	 */
 	public void validateOptionB(String input) {
 		try {
 			int parsed = Integer.parseInt(input);
-			optionB.set(parsed > 2 ? parsed : 2);
+			optionB.set(parsed > 2 ? parsed : 3);
 		} catch (NumberFormatException e) {
-			optionB.set(2);
+			optionB.set(3);
 		}
 	}
 	
