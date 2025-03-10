@@ -1,4 +1,4 @@
-package Back_End_Logic;
+package backend;
 import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.*;
 import javafx.collections.*;
@@ -8,7 +8,7 @@ public class MenuLogic {
 		= FXCollections.observableArrayList("Simple Game", "General Game");
 	
 	/**
-	 *  Descriptive enums for Radio Buttons
+	 *  Generic enum for Choice Boxes & Radio Buttons
 	 */
 	public enum Option { OPTION1, OPTION2 }
 	
@@ -19,6 +19,7 @@ public class MenuLogic {
 	private ObjectProperty<Option> selectedOptionC =
 			new SimpleObjectProperty<>(Option.OPTION1);
 	
+	// Setters and Getters
 	/**
 	 * Unit Testing Specific Function for calling OptionB value
 	 * @return Option B Value
@@ -26,6 +27,11 @@ public class MenuLogic {
 	public int getOptionB() {
 		return optionB.get();
 	}
+	
+	// Custom Methods
+	/**
+	 * Validation of Game Mode Selection
+	 */
 	
 	/**
 	 *  Validation of Board Size
@@ -35,7 +41,10 @@ public class MenuLogic {
 	public void validateOptionB(String input) {
 		try {
 			int parsed = Integer.parseInt(input);
-			optionB.set(parsed > 2 ? parsed : 3);
+			
+			if (parsed < 3)
+				optionB.set(parsed > 2 ? parsed : 3);
+			
 		} catch (NumberFormatException e) {
 			optionB.set(3);
 		}

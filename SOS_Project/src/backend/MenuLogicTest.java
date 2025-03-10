@@ -1,4 +1,4 @@
-package Back_End_Logic;
+package backend;
 import static org.junit.jupiter.api.Assertions.*;
 
 //import Back_End_Logic.MainMenu;
