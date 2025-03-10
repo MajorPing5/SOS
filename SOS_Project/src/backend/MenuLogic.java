@@ -4,6 +4,9 @@ import javafx.beans.property.*;
 import javafx.collections.*;
 
 public class MenuLogic {
+	/**
+	 *  Context for GUI Buttons to always pull from - creates single source of truth for all game modes moving forward
+	 */
 	public static final ObservableList<String> GAME_MODES
 		= FXCollections.observableArrayList("Simple Game", "General Game");
 	
