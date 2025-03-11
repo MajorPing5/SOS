@@ -1,27 +1,37 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import application.App;
+// import application.App;
 import backend.MenuLogic;
 import backend.GameParams;
 
 public class CtrlerMainMenu {
-	@FXML private ChoiceBox<String> modeChoiceBox;
-	@FXML private TextField boardSizeField;
+	@FXML
+	private ChoiceBox<String> cbMode;
+	@FXML
+	private TextField tfboardSize;
 	// @FXML private ChoiceBox<String> opponentChoiceBox;
-	@FXML private Button startButton;
-	@FXML private Label errorLabel;
+	@FXML
+	private Button startButton;
+	@FXML
+	private Label errorLabel;
+	
+	@FXML
+	protected void gameStart(ActionEvent e) {
+		
+	}
 	
 	public void initialize() {
-		modeChoiceBox.getItems().addAll(GameParams.GAME_MODES);
+		cbMode.getItems().addAll(GameParams.GAME_MODES);
 		errorLabel.setVisible(false);
 	}
 	
 	@FXML private void handleStartGame() {
-		String boardSizeText = boardSizeField.getText();
-		String selectedMode = modeChoiceBox.getValue();
+		String boardSizeText = tfboardSize.getText();
+		String selectedMode = cbMode.getValue();
 		
 		errorLabel.setVisible(false);
 		
