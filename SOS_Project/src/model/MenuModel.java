@@ -47,23 +47,12 @@ public class MenuModel {
 	 * @param	String input
 	 * @return	Either 3 or parsed value
 	 */
-	public void validateBoardSize(String input) {
+	public boolean validateBoardSize(String input) {
 		try {
 			int parsed = Integer.parseInt(input);
-			
-			if (parsed < 3)
-				optionB.set(parsed > 2 ? parsed : 3);
-			
+			return parsed > 2;			
 		} catch (NumberFormatException e) {
-			optionB.set(3);
+			return false;
 		}
-	}
-	
-	/**
-	 * Readiness Check based on Valid Grid Size
-	 * @return The Boolean of Board Size > 2
-	 */
-	public BooleanExpression isReadyToStart() {
-		return optionB.greaterThan(2);
 	}
 }

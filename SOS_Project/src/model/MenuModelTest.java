@@ -13,19 +13,19 @@ class MenuModelTest {
 				// Invalid Board Size when < 2
 				() -> {
 					MenuModel testBoard = new MenuModel();
-					testBoard.validateOptionB("0");
+					testBoard.validateBoardSize("0");
 					assertEquals(2, testBoard.getOptionB());
 				},
 				// Invalid Board Size when = 2
 				() -> {
 					MenuModel testBoard = new MenuModel();
-					testBoard.validateOptionB("2");
+					testBoard.validateBoardSize("2");
 					assertEquals(2, testBoard.getOptionB());
 				},
 				// Invalid Board Size when not numerical
 				() -> {
 					MenuModel testBoard = new MenuModel();
-					testBoard.validateOptionB("abc");
+					testBoard.validateBoardSize("abc");
 					assertEquals(2, testBoard.getOptionB());
 				}
 			);
@@ -35,9 +35,8 @@ class MenuModelTest {
 	void gameBoardValidTest() {
 		// Valid board Size when > 2
 		MenuModel testBoard = new MenuModel();
-		testBoard.validateOptionB("3");
+		testBoard.validateBoardSize("3");
 		
 		assertEquals(3, testBoard.getOptionB());
 	}		
 }
-

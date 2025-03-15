@@ -1,12 +1,17 @@
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import model.GameParams;
 import model.MenuModel;
 
-// Focus should be on communication between MainMenuModel and MainMenuView
+// Focus should be on communication transport between MainMenuModel and MainMenuView
 public class CtrlerMainMenu {
 	@FXML
 	private ChoiceBox<String> cbMode;
@@ -18,23 +23,43 @@ public class CtrlerMainMenu {
 	@FXML
 	private Label errorLabel;
 	
+	private MenuModel model;
+	private GameParams params;
+	
+	Map<String, Object> inputFields;
+	
 	public void initialize() {
 		cbMode.getItems().addAll(MenuModel.GAME_MODES);
+		
+		inputFields = new HashMap<>();
 	}
 	
 	@FXML private void handleStartGame() {
-		String boardSizeText = txtBoardSize.getText();
-		String selectedMode = cbMode.getValue();
 		
+		inputFields.put("boardSize", txtBoardSize.getText());
+		inputFields.put("gameMode", cbMode.getValue());
+		
+		List<String> invalidFields = new ArrayList<>();
 		errorLabel.setVisible(false);
 		
-		// Checks if game mode was selected to verify game state settings to use
-		if (selectedMode == null) {
-			showError("ERROR: GAME MODE MISSING. SELECT A GAME MODE");
+		inputFields.forEach((fieldName, value) -> {
+			if (value == null) {
+				invalidFields.add(fieldName);
+			} else if (fieldName.equals("boardSize")) {
+				model.validateBoardSize(value.toString());
+			}
+		});
+		
+		// If empty, all fields are valid and accepted
+		if (!invalidFields.isEmpty()) {
+			showError("ERROR: The following feilds contained invalid information: " +
+					String.join(", ", invalidFields));
 			return;
 		}
+		int boardSize = (Integer) inputFields.get("boardSize");
+		String gameMode = (String) inputFields.get("gameMode");
 		
-		
+		App.startGame(new GameParams(boardSize, gameMode, "Human"));
 	}
 
 	private void showError(String message) {
