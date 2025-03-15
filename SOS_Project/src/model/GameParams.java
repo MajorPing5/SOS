@@ -1,14 +1,12 @@
-package backend;
+package model;
 
 import java.util.*;
 
+// Focus shouild be on immutable data carrier ONLY
 /**
  * Class responsible for ALL relevant Game Settings and Parameters
  */
 public class GameParams {
-	public static final List<String> GAME_MODES = Arrays.asList("Simple", "General");
-	public static final List<String> OPPONENT_TYPES = Arrays.asList("Human", "Computer");
-	
 	private final int boardSize;
 	private final String gameMode, opponentType;
 	

@@ -5,8 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
 import javafx.stage.Stage;
 
-import backend.GameParams;
-
+import controller.CtrlerMainMenu;
+import model.GameParams;
+// Should be focused on being the manager of scene transition and state management
 public class App extends Application{
 	private static Stage primaryStage;
 	private static GameParams gameSettings;
@@ -35,6 +36,8 @@ public class App extends Application{
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	// Initializes the opening stage when the program first begins
 	@Override

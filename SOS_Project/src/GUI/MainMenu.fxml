@@ -19,13 +19,13 @@
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
                         <Label text="Game Mode Selector:" />
-                        <ChoiceBox fx:id="modeChoiceBox" prefWidth="150.0" />
+                        <ChoiceBox fx:id="cbMode" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="5.0">
                      <children>
                         <Label alignment="CENTER" text="Board Size:" />
-                        <TextField fx:id="boardSizeField" />
+                        <TextField fx:id="txtBoardSize" />
                      </children>
                   </HBox>
                </children>

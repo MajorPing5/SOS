@@ -1,14 +1,20 @@
-package backend;
+package model;
 import javafx.beans.binding.BooleanExpression;
 import javafx.beans.property.*;
 import javafx.collections.*;
 
-public class MenuLogic {
+public class MenuModel {
 	/**
-	 *  Context for GUI Buttons to always pull from - creates single source of truth for all game modes moving forward
+	 *  GUI Context for Buttons - creates single source for all game modes moving forward
 	 */
-	public static final ObservableList<String> GAME_MODES
-		= FXCollections.observableArrayList("Simple Game", "General Game");
+	public static final ObservableList<String> GAME_MODES =
+		FXCollections.observableArrayList("Simple Game", "General Game");
+	
+	/**
+	 *  GUI Context for Buttons - creates single source for all opponent modes moving forward
+	 */
+	public static final ObservableList<String> OPPONENT_TYPES =
+		FXCollections.observableArrayList("Human", "Computer");
 	
 	/**
 	 *  Generic enum for Choice Boxes & Radio Buttons
@@ -41,7 +47,7 @@ public class MenuLogic {
 	 * @param	String input
 	 * @return	Either 3 or parsed value
 	 */
-	public void validateOptionB(String input) {
+	public void validateBoardSize(String input) {
 		try {
 			int parsed = Integer.parseInt(input);
 			
