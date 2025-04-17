@@ -1,0 +1,16 @@
+# Eclipse
+.metadata/
+.project
+.classpath
+.settings/
+bin/
+*.log
+*.prefs
+*.xmi
+
+# Java
+*.class
+*.jar
+
+# System files
+*.DS_Store
