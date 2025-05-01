@@ -5,31 +5,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.GameParams;
+import controller.CtrlerMainMenu;
 
 // Should be focused on being the manager of scene transition and state management
 public class App extends Application {
   private static Stage primaryStage;
-  private static GameParams gameSettings;
 
   // Custom Methods
-
-  public static void startGame(GameParams params) {
-    gameSettings = params;
-    switchToScene("GameScene.fxml", gameSettings);
-  }
-
   /**
    * Dedicated custom method for scene switching
    *
    * @param fxmlFileName
    * @param settings
    */
-  public static void switchToScene(String fxmlFileName, GameParams settings) {
+  public static void switchToScene(String fxmlFileName, CtrlerMainMenu settings) {
     try {
-      if (settings != null) {
-        gameSettings = settings;
-      }
       // String concatenation for the fxml file, assuming all scenes are stored in GUI
       FXMLLoader loader = new FXMLLoader(App.class.getResource("/GUI/" + fxmlFileName));
       Parent root = loader.load();

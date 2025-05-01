@@ -12,7 +12,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-import model.GameParams;
 import model.MenuModel;
 
 // Focus should be on communication transport between MainMenuModel and MainMenuView
@@ -27,6 +26,10 @@ public class CtrlerMainMenu {
   private MenuModel model;
   private InputFields fields;
   private Validator validator;
+  
+  private int boardSize;
+  private String gameMode;
+  private String opponentType = "Human"; // Set to human until AI implementation
 
   // Getters
   /**
@@ -49,7 +52,49 @@ public class CtrlerMainMenu {
   public String getCBOpponent() {
     return cbOp.getValue();
   }
+  
+  /**
+   * Getter that retrieves the current Board Size
+   *
+   * @return boardSize
+   */
+  public int getBoardSize() {
+    return boardSize;
+  }
 
+  /**
+   * Getter that retrieves the current Game Mode setting
+   *
+   * @return gameMode
+   */
+  public String getGameMode() {
+    return gameMode;
+  }
+
+  /**
+   * Getter that retrieves the current Opponent setting
+   *
+   * @return opponentType
+   */
+  public String getOpponentType() {
+    return opponentType;
+  }
+  
+  //Constructor
+  /**
+   * Function to retrieve all defined parameters specific for the currently running game
+   * 
+   * @param boardSize
+   * @param gameMode
+   * @param opponentType
+   */
+  public CtrlerMainMenu(int boardSize, String gameMode, String opponentType) {
+    super();
+    this.boardSize = boardSize;
+    this.gameMode = gameMode;
+    this.opponentType = opponentType;
+  }
+  
   // Custom Methods
   /** Initial function to commence Main Menu building and components */
   public void initialize() {
@@ -67,8 +112,7 @@ public class CtrlerMainMenu {
    * @return GameParams(boardSize, gameMode, "Human") or Error Message
    */
   @FXML
-  private void validateSettings() {
-
+  private void startGame() {
     fields.addField("gameMode", getCBMode());
     fields.addField("boardSize", getTxtBoardSize());
 
@@ -83,10 +127,10 @@ public class CtrlerMainMenu {
       return;
     }
 
-    int boardSize = (Integer) fields.getField("boardSize");
-    String gameMode = (String) fields.getField("gameMode");
+    boardSize = (Integer) fields.getField("boardSize");
+    gameMode = (String) fields.getField("gameMode");
 
-    App.startGame(new GameParams(boardSize, gameMode, "Human"));
+    App.switchToScene("GameScene.fxml", new CtrlerMainMenu(boardSize, gameMode, opponentType));
   }
 
   /**
