@@ -1,18 +1,18 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class MenuModel {
   /** GUI Context for Buttons - creates single source for all game modes moving forward */
-  public static final ObservableList<String> GAME_MODES =
-      FXCollections.observableArrayList("Simple Game", "General Game");
+  public static final ArrayList<String> GAME_MODES =
+      new ArrayList<>(List.of("Simple Game", "General Game"));
 
   /** GUI Context for Buttons - creates single source for all opponent modes moving forward */
-  public static final ObservableList<String> OPPONENT_TYPES =
-      FXCollections.observableArrayList("Human", "Computer");
+  public static final ArrayList<String> OPPONENT_TYPES =
+      new ArrayList<>(List.of("Human", "Computer"));
+  
+  public MenuModel() {}
 
   // Custom Methods
 
@@ -30,7 +30,7 @@ public class MenuModel {
         }
         break;
       case "opponentType":
-        if (validateChoiceBox(input.toString())) {
+        if (!validateChoiceBox(input.toString())) {
           invalidFields.add(field);
         }
         break;

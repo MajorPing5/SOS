@@ -1,45 +1,29 @@
 package application;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+
 import controller.CtrlerMainMenu;
+import view.*;
+import model.*;
+import util.*;
 
 // Should be focused on being the manager of scene transition and state management
 public class App extends Application {
-  private static Stage primaryStage;
+	@Override
+	public void start(Stage primaryStage) throws IOException {
+		SceneSwap.sceneSwap(
+				primaryStage,
+				"/gui/MainMenu.fxml",
+				MenuView.class,
+				MenuModel.class,
+				(view, model) -> new CtrlerMainMenu(view, model)
+				);
+	}
 
-  // Custom Methods
-  /**
-   * Dedicated custom method for scene switching
-   *
-   * @param fxmlFileName
-   * @param settings
-   */
-  public static void switchToScene(String fxmlFileName, CtrlerMainMenu settings) {
-    try {
-      // String concatenation for the fxml file, assuming all scenes are stored in GUI
-      FXMLLoader loader = new FXMLLoader(App.class.getResource("/GUI/" + fxmlFileName));
-      Parent root = loader.load();
-      primaryStage.setScene(new Scene(root));
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  // Initializes the opening stage when the program first begins
-  @Override
-  public void start(Stage stage) {
-    primaryStage = stage;
-    primaryStage.setTitle("SOS Game");
-    switchToScene("MainMenu.fxml", null);
-    primaryStage.show();
-  }
-
-  public static void main(String[] args) {
-    // new MainMenu window
-    launch(args);
-  }
+	public static void main(String[] args) {
+		launch(args);
+	}
 }

@@ -11,17 +11,18 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CtrlerGameBoard">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.GameModel">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="New Game" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
+              <MenuItem mnemonicParsing="false" onAction="#newGame" text="New Game" />
+                  <MenuItem mnemonicParsing="false" onAction="#quitGame" text="Quit" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -36,7 +37,7 @@
             <HBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label text="Game Mode Selector:" />
-                  <Label text="Type" textFill="RED" />
+                  <Label fx:id="txtGameMode" text="Type" textFill="RED" />
                </children>
                <padding>
                   <Insets left="20.0" right="5.0" />
@@ -45,7 +46,7 @@
             <HBox alignment="CENTER" spacing="5.0" HBox.hgrow="ALWAYS">
                <children>
                   <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Board Size:" />
-                  <Label contentDisplay="CENTER" text="Int" textFill="RED" />
+                  <Label fx:id="txtBoardSize" contentDisplay="CENTER" text="Int" textFill="RED" />
                </children>
             </HBox>
          </children>
@@ -59,26 +60,53 @@
                         <Label text="Player 1" />
                         <RadioButton fx:id="player1S" mnemonicParsing="false" text="S">
                            <toggleGroup>
-                              <ToggleGroup fx:id="p1radioGroup" />
+                              <ToggleGroup fx:id="p1RadioGroup" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="player1O" mnemonicParsing="false" text="O" toggleGroup="$p1radioGroup" />
+                        <RadioButton fx:id="player1O" mnemonicParsing="false" text="O" toggleGroup="$p1RadioGroup" />
                      </children>
                   </VBox>
                </children>
             </Group>
-            <GridPane fx:id="gameBoard" alignment="CENTER" gridLinesVisible="true">
-              <columnConstraints>
+            <GridPane fx:id="gameBoard" alignment="CENTER" gridLinesVisible="true" hgap="1.0" maxHeight="Infinity" maxWidth="Infinity" vgap="1.0" HBox.hgrow="ALWAYS">
+            	<!-- Default 3x3 Row Constraints -->
+			    <rowConstraints>
+			        <RowConstraints percentHeight="33.33" />
+			        <RowConstraints percentHeight="33.33" />
+			        <RowConstraints percentHeight="33.33" />
+			    </rowConstraints>
+			    
+			    <!-- Default 3x3 Column Constraints -->
+			    <columnConstraints>
+			        <ColumnConstraints percentWidth="33.33" />
+			        <ColumnConstraints percentWidth="33.33" />
+			        <ColumnConstraints percentWidth="33.33" />
+			    </columnConstraints>
+            	
+            	<!-- Default 3x3 Cells -->
+            	<children>
+			        <Pane GridPane.columnIndex="0" GridPane.rowIndex="0" />
+			        <Pane GridPane.columnIndex="1" GridPane.rowIndex="0" />
+			        <Pane GridPane.columnIndex="2" GridPane.rowIndex="0" />
+			        <Pane GridPane.columnIndex="0" GridPane.rowIndex="1" />
+			        <Pane GridPane.columnIndex="1" GridPane.rowIndex="1" />
+			        <Pane GridPane.columnIndex="2" GridPane.rowIndex="1" />
+			        <Pane GridPane.columnIndex="0" GridPane.rowIndex="2" />
+			        <Pane GridPane.columnIndex="1" GridPane.rowIndex="2" />
+			        <Pane GridPane.columnIndex="2" GridPane.rowIndex="2" />
+			    </children>
+			    <!-- Original .fxml config for a 3x3 grid
+			    <columnConstraints>
                 <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
                 <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
-                  <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="30.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-              </rowConstraints>
-            </GridPane>
+              </rowConstraints>  -->
+			</GridPane>
             <Group>
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
